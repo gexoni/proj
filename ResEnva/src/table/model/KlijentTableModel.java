@@ -13,7 +13,7 @@ import database.DBConnection;
 
 public class KlijentTableModel extends DefaultTableModel {
 
-	private String basicQuery = "SELECT K_PIB, K_NAZIV, K_ADRESA, K_EMAIL, K_WEB, K_TELEFON, K_FAX, K_FIZICKO_LICE_ FROM KLIJENT";
+	private String basicQuery = "SELECT K_IME, K_NAZIV, K_ADRESA, K_EMAIL, K_WEB, K_TELEFON, K_FAX, K_FIZICKO_LICE_ FROM KLIJENT";
 	private String orderBy = " ORDER BY K_PIB";
 	private String whereStmt = "";
 	public KlijentTableModel(Object[] colNames, int rowCount) {
