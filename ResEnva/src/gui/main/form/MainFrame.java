@@ -1,6 +1,8 @@
 package gui.main.form;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -16,6 +18,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+
+import form.KlijentStandardForm;
 
 
 
@@ -33,7 +37,8 @@ public class MainFrame extends JFrame{
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		//setExtendedState(MAXIMIZED_BOTH);
 		 try {
-			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("img/resenva.jpg")))));
+			 ImageIcon img = new ImageIcon(ImageIO.read(new File("img/resenva.jpg")));
+			this.setContentPane(new JLabel(img));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -64,7 +69,15 @@ public class MainFrame extends JFrame{
 
 		JButton ClientList = new JButton("Client List");
 		JButton UpcomingEvent = new JButton("Upcoming Events");
-		
+		ClientList.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				KlijentStandardForm form = new KlijentStandardForm();
+				form.setVisible(true);
+			}
+		});
 		
 
 		menuBar.add(ClientList);

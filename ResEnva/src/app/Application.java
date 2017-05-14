@@ -17,7 +17,7 @@ public class Application {
 		connect = SqliteConnection.dbConnector();
 		
 		try{
-			String querry = "SELECT ContactName from WaterData where CompanyName = 'AquaLink'";
+			String querry = "SELECT ContactName from WaterData where CountryRegion = 'Spain'";
 			PreparedStatement pst = connect.prepareStatement(querry);
 			ResultSet rs= pst.executeQuery();
 			
