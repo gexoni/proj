@@ -13,8 +13,8 @@ public class SearchAction extends AbstractAction {
 	private StandardForm standardForm;
 
 	public SearchAction(StandardForm standardForm) {
-		//putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/search.gif")));
-		putValue(SHORT_DESCRIPTION, "Pretraga");
+		putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/search.gif")));
+		putValue(SHORT_DESCRIPTION, "SEARCH");
 		this.standardForm=standardForm;
 	}
 

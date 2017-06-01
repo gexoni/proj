@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +22,7 @@ public class KlijentTableModel extends DefaultTableModel {
 	private String orderBy = " ORDER BY CompanyName";
 	private String whereStmt = "";
 	public KlijentTableModel(Object[] colNames, int rowCount) {
+		
 		super(colNames, rowCount);
 	}
 //Otvaranje upita
@@ -28,11 +31,12 @@ public void open() throws SQLException {
 }
 
 private void fillData(String sql) throws SQLException {
+	//PROVERA I OZNAKA DATUMA ZA AKTIVNOSTI
 	setRowCount(0);
 	Statement stmt = SqliteConnection.dbConnector().createStatement();
 	ResultSet rset = stmt.executeQuery(sql);
 	while (rset.next()) {
-
+		
 	String CompName = rset.getString("CompanyName");
 	String naziv = rset.getString("ContactName");
 	String naziv2 = rset.getString("Address");
@@ -43,12 +47,17 @@ private void fillData(String sql) throws SQLException {
 	String naziv7 = rset.getString("Email");
 	String naziv8 = rset.getString("Comments");
 	String naziv9 = rset.getString("NextActivity");
-	
+//	System.out.println(CompName + "-----"+ naziv  + "-----"+  naziv2  + "-----"+  naziv3 + "-----"+  naziv4 + "-----"+ naziv5 + "-----"+  naziv6 + "-----"+  naziv7 + "-----"+  naziv8 + "-----"+  naziv9);
 	addRow(new String[]{CompName, naziv ,naziv2 ,naziv3 ,naziv4,naziv5,naziv6,naziv7,naziv8,naziv9});
+	
 	}
+	
 	rset.close();
 	stmt.close();
 	fireTableDataChanged();
+	
+	
+	
 	}
 public int insertRow(String CompName, String naziv, String naziv1, String naziv2,
 		String naziv3, String naziv4, String naziv5, String naziv6,String naziv7, String naziv8)  throws SQLException {
@@ -146,15 +155,22 @@ public void deleteRow(int index) throws SQLException {
 		retVal = sortedInsert(CompName,naziv,naziv1,naziv2,naziv3,naziv4,naziv5,naziv6,naziv7, naziv8 );
 		fireTableDataChanged();
 		}
+	
 		return retVal;
 	}
 
-public void search(String where) throws SQLException{
-	String basic ="SELECT CompanyName, ContactName, Address, City, CountryRegion, ContactTitle, PhoneNumber, Email, Comments, NextActivity FROM WaterData";
-	String order = "";
-	fillData(basic+order+where);
+	public void search(String where) throws SQLException{
+		String basic ="SELECT CompanyName, ContactName, Address, City, CountryRegion, ContactTitle, PhoneNumber, Email, Comments, NextActivity FROM WaterData";
+		String order = "";
+		fillData(basic+order+where);
+	}
+
+	public void activitySearch(String where)throws SQLException{
+		
+	
+	}
+	
+	
+	
+	
 }
-
-
-}
-

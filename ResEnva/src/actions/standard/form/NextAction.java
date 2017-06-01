@@ -14,8 +14,8 @@ public class NextAction extends AbstractAction {
 	private StandardForm standardForm;
 
 	public NextAction(StandardForm standardForm) {
-	//	putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/next.gif")));
-		putValue(SHORT_DESCRIPTION, "Sledeci");
+		putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/next.gif")));
+		putValue(SHORT_DESCRIPTION, "NEXT");
 		this.standardForm=standardForm;
 
 	}

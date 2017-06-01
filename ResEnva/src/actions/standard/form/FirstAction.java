@@ -15,8 +15,8 @@ public class FirstAction extends AbstractAction {
 	private StandardForm standardForm;
 
 	public FirstAction(StandardForm standardForm) {
-	//	putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/first.gif")));
-		putValue(SHORT_DESCRIPTION, "Pocetak");
+		putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/first.gif")));
+		putValue(SHORT_DESCRIPTION, "FIRST");
 		this.standardForm=standardForm;
 	}
 

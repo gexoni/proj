@@ -16,8 +16,8 @@ public class AddAction extends AbstractAction {
 	private StandardForm standardForm;
 	
 	public AddAction(StandardForm standardForm) {
-	//	putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/add.gif")));
-		putValue(SHORT_DESCRIPTION, "Dodavanje");
+		putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/add.gif")));
+		putValue(SHORT_DESCRIPTION, "ADD NEW");
 		this.standardForm=standardForm;
 	}
 

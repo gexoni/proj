@@ -14,8 +14,8 @@ public class PreviousAction extends AbstractAction {
 	private StandardForm standardForm;
 
 	public PreviousAction(StandardForm standardForm) {
-		//putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/prev.gif")));
-		putValue(SHORT_DESCRIPTION, "Prethodni");
+		putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/prev.gif")));
+		putValue(SHORT_DESCRIPTION, "PREVIOUS");
 		this.standardForm=standardForm;
 
 	}

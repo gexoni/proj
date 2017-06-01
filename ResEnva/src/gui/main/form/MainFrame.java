@@ -7,10 +7,13 @@ import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -62,9 +65,13 @@ public class MainFrame extends JFrame{
 				}
 			}
 		});
-		
+	
 		setJMenuBar(menuBar);
-
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+		LocalDate localDate = LocalDate.now();
+		System.out.println(dtf.format(localDate)); //2016/11/16
+		
 	}
 
 	private void setUpMenu(){
@@ -125,8 +132,7 @@ public class MainFrame extends JFrame{
 		
 		
 	}
-
-
+	
 
 	public static MainFrame getInstance(){
 		if (instance==null)
@@ -135,4 +141,6 @@ public class MainFrame extends JFrame{
 
 	}
 
+	
+	
 }

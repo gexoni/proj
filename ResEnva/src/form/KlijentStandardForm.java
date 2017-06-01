@@ -1,7 +1,17 @@
 package form;
 
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.File;
+import java.security.Key;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -12,6 +22,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -37,9 +48,8 @@ public class KlijentStandardForm extends StandardForm {
 	private JTextField ContactTitle = new JTextField(20);
 	private JTextField Phone = new JTextField(15);
 	private JTextField Email = new JTextField(15);
-	private JTextArea Comments = new JTextArea();
+	private JTextArea Comments = new JTextArea(5,30);
 	private JTextField NextActivity = new JTextField(20);
-	
 	
 	
 	private JButton btnRollback, btnCommit;
@@ -47,7 +57,6 @@ public class KlijentStandardForm extends StandardForm {
 	KlijentTableModel tableModel;
 	
 	public KlijentStandardForm(){
-
 
 		setTitle("Klijenti");
 		initTable();
@@ -65,7 +74,9 @@ private void initTable(){
 		JScrollPane scrollPane = new JScrollPane(tblGrid);
 		add(scrollPane, "grow, wrap");
 		// Kreiranje TableModel-a, parametri: header-i kolona i broj redova
-		tableModel = new KlijentTableModel(new String[] {"Company Name, Contact , Address, City , Country-Region, Contact Title, Phone Number , E-mail, Comments, Next Activity ",}, 0);
+		
+		tableModel = new KlijentTableModel(new String[] {"Company Nameaaaaaaa", " Contact" , "Address", "City" , "Country-Region", "Contact Title", "Phone Number ", " E-mail ", "Comments", "Next Activity "}, 0);
+		//tableModel = new KlijentTableModel("Company Name, Contact , Address, City , Country-Region, Contact Title, Phone Number , E-mail, Comments, Next Activity ", 0);
 		tblGrid.setModel(tableModel);
 		try {
 			tableModel.open();
@@ -116,7 +127,9 @@ private void initTable(){
 		JLabel lblEmail= new JLabel("E-mail:");
 		JLabel lblComments = new JLabel("Comments:");
 		JLabel lblNextActivity = new JLabel("Next Activity:");
-
+		Border border = BorderFactory.createLineBorder(Color.GRAY);
+		Comments.setBorder(border);
+		
 		dataPanel.add(lblCompName);
 		dataPanel.add(CompName,"wrap");
 		
@@ -151,22 +164,21 @@ private void initTable(){
 		
 		
 		
-		
 		bottomPanel.add(dataPanel);
 
 
 		buttonsPanel.setLayout(new MigLayout("wrap"));
 		buttonsPanel.add(btnCommit);
 		buttonsPanel.add(btnRollback);
-		bottomPanel.add(buttonsPanel,"dock east");
-
+		bottomPanel.add(buttonsPanel,"dock south");
+		
 		add(bottomPanel, "grow, wrap");
 		setMode(1);
 	}
 
 	@Override
 	public JTable getTable() {
-		// TODO Auto-generated method stub
+		
 		return tblGrid;
 	}
 	private void sync() {
@@ -353,10 +365,15 @@ private void initTable(){
 		
 		} catch (SQLException ex) {
 		JOptionPane.showMessageDialog(this, ex.getMessage(),
-		"Greska", JOptionPane.ERROR_MESSAGE);
+		"", JOptionPane.ERROR_MESSAGE);
 		this.setMode(2);
 		}
-	
+		try {
+			refresh();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.setMode(1);
 		
 	}
@@ -385,8 +402,8 @@ private void initTable(){
 		int index1 = ktm.updateRow(Compname,naziv,naziv1,naziv2,naziv3,naziv4,naziv5,naziv6,naziv7,naziv8, index);
 		tblGrid.setRowSelectionInterval(index1, index1);
 		} catch (SQLException ex) {
-		JOptionPane.showMessageDialog(this, ex.getMessage(),
-		"Greska", JOptionPane.ERROR_MESSAGE);
+		/*JOptionPane.showMessageDialog(this, ex.getMessage(),
+		"Greska", JOptionPane.ERROR_MESSAGE);*/
 		}
 	
 	}
@@ -406,50 +423,60 @@ private void initTable(){
 		String naziv7 = Comments.getText().trim();
 		String naziv8 = NextActivity.getText().trim();
 		if(!Compname.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE CompanyName='"+Compname+"';");
-
+			((KlijentTableModel) getTable().getModel()).search(" WHERE CompanyName LIKE '"+Compname+"%';");
+			
 		}
 		else if(!naziv.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE ContactName='"+naziv+"';");
+			((KlijentTableModel) getTable().getModel()).search(" WHERE ContactName LIKE'%"+naziv+"%';");
 
 		}
 		else if(!naziv1.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE Address='"+naziv1+"';");
+			((KlijentTableModel) getTable().getModel()).search(" WHERE Address LIKE'"+naziv1+"%';");
 
 		}
 		else if(!naziv2.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE City='"+naziv2+"';");
+			((KlijentTableModel) getTable().getModel()).search(" WHERE City LIKE'"+naziv2+"%';");
 
 		}
 		else if(!naziv3.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE Country/Region='"+naziv3+"';");
+			((KlijentTableModel) getTable().getModel()).search(" WHERE CountryRegion LIKE'"+naziv3+"%';");
 
 		}
 		else if(!naziv4.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE ContactTitle="+naziv4+";");
+			((KlijentTableModel) getTable().getModel()).search(" WHERE ContactTitle LIKE"+naziv4+"%';");
 
 		}
 		else if(!naziv5.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE PhoneNumber='"+naziv5+"';");
+			((KlijentTableModel) getTable().getModel()).search(" WHERE PhoneNumber LIKE'"+naziv5+"%';");
 
 		}
 		else if(!naziv6.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE E-Mail='"+naziv6+"';");
+			((KlijentTableModel) getTable().getModel()).search(" WHERE E-Mail LIKE'"+naziv6+"%';");
 			
 
 		}
 		else if(!naziv7.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE Comments='"+naziv7+"';");
+			((KlijentTableModel) getTable().getModel()).search(" WHERE Comments LIKE'"+naziv7+"%';");
 
 		}
 		else if(!naziv8.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE NextActivity='"+naziv8+"';");
+			((KlijentTableModel) getTable().getModel()).search(" WHERE NextActivity LIKE'"+naziv8+"%';");
 
 		}
 		
 	}
 
-
+public void hasActiviti() throws SQLException{
+	
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+	LocalDate localDate = LocalDate.now();
+	System.out.println(dtf.format(localDate)); //2016/11/16
+	
+	((KlijentTableModel) getTable().getModel()).search(" WHERE NextActivity LIKE'"+dtf.format(localDate)+"%';");
+	
+	
+	
+}
 
 	@Override
 	public void refresh() throws SQLException {
@@ -457,8 +484,7 @@ private void initTable(){
 
 		
 	}
-
-
-
-
+	
+	
+	
 }

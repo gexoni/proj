@@ -14,8 +14,8 @@ public class DeleteAction extends AbstractAction {
 	private StandardForm standardForm;
 	
 	public DeleteAction(StandardForm standardForm) {
-		//putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/remove.gif")));
-		putValue(SHORT_DESCRIPTION, "Brisanje");
+		putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/remove.gif")));
+		putValue(SHORT_DESCRIPTION, "DELETE");
 		this.standardForm=standardForm;
 		
 	}

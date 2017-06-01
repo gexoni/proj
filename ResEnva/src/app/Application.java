@@ -22,7 +22,7 @@ public class Application {
 			ResultSet rs= pst.executeQuery();
 			
 			while(rs.next()){
-				System.out.println(rs.getString(1));
+				//System.out.println(rs.getString(1));
 			}
 				
 			

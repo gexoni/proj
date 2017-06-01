@@ -15,8 +15,8 @@ public class LastAction extends AbstractAction {
 
 
 	public LastAction(StandardForm standardForm) {
-	//	putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/last.gif")));
-		putValue(SHORT_DESCRIPTION, "Poslednji");
+		putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/last.gif")));
+		putValue(SHORT_DESCRIPTION, "LAST");
 		this.standardForm=standardForm;
 	}
 

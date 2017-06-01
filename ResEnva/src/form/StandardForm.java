@@ -2,8 +2,14 @@ package form;
 
 
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -94,15 +100,21 @@ public abstract class StandardForm extends JFrame {
 		toolBar = new JToolBar();
 		btnSearch = new JButton(new SearchAction(this));
 		toolBar.add(btnSearch);
-		
+		try {
+			ImageIcon img = new ImageIcon(ImageIO.read(new File("img/resenva.jpg")));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 
 		btnRefresh = new JButton(new RefreshAction(this));
 		toolBar.add(btnRefresh);
 
 
-		btnHelp = new JButton(new HelpAction());
-		toolBar.add(btnHelp);
+		//btnHelp = new JButton(new HelpAction());
+		//toolBar.add(btnHelp);
 
 		toolBar.addSeparator();
 
@@ -137,9 +149,10 @@ public abstract class StandardForm extends JFrame {
 		
 	}
 	
-
-
+	
 	
 
+	
+	
 
 }

@@ -14,8 +14,8 @@ public class RollbackAction extends AbstractAction {
 	private StandardForm standardForm;
 
 	public RollbackAction(StandardForm  standardForm) {
-	//	putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/remove.gif")));
-		putValue(SHORT_DESCRIPTION, "Poništi");
+		putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/remove.gif")));
+		putValue(SHORT_DESCRIPTION, "DISMISS");
 		this.standardForm=standardForm;
 	}
 

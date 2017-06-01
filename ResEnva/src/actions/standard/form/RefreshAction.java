@@ -14,7 +14,7 @@ public class RefreshAction extends AbstractAction {
 	private StandardForm standardForm;
 
 	public RefreshAction(StandardForm standardForm) {
-	//	putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/refresh.gif")));
+		putValue(SMALL_ICON, new ImageIcon(getClass().getResource("/img/refresh.gif")));
 		putValue(SHORT_DESCRIPTION, "Refresh");
 		this.standardForm = standardForm;
 	}
