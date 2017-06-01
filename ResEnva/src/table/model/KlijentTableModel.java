@@ -32,6 +32,7 @@ private void fillData(String sql) throws SQLException {
 	Statement stmt = SqliteConnection.dbConnector().createStatement();
 	ResultSet rset = stmt.executeQuery(sql);
 	while (rset.next()) {
+
 	String CompName = rset.getString("CompanyName");
 	String naziv = rset.getString("ContactName");
 	String naziv2 = rset.getString("Address");
@@ -43,7 +44,7 @@ private void fillData(String sql) throws SQLException {
 	String naziv8 = rset.getString("Comments");
 	String naziv9 = rset.getString("NextActivity");
 	
-	addRow(new String[]{CompName, naziv,naziv2,naziv3,naziv4,naziv5,naziv6,naziv7,naziv8,naziv9});
+	addRow(new String[]{CompName, naziv ,naziv2 ,naziv3 ,naziv4,naziv5,naziv6,naziv7,naziv8,naziv9});
 	}
 	rset.close();
 	stmt.close();

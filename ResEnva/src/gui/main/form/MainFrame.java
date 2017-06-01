@@ -1,6 +1,9 @@
 package gui.main.form;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Menu;
+import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -30,7 +33,7 @@ public class MainFrame extends JFrame{
 	private JMenuBar menuBar;
 
 	public MainFrame(){
-
+		setBackground(Color.lightGray);
 		setSize(new Dimension(800,600));
 		setLocationRelativeTo(null);
 		setTitle("ResEnva");
@@ -66,8 +69,8 @@ public class MainFrame extends JFrame{
 
 	private void setUpMenu(){
 		menuBar = new JMenuBar();
-
-		JButton ClientList = new JButton("Client List");
+		JMenu Meni = new JMenu("Clients");
+		JMenuItem ClientList = new JMenuItem("Water Data Clients");
 		JButton UpcomingEvent = new JButton("Upcoming Events");
 		ClientList.addActionListener( new ActionListener() {
 			
@@ -78,9 +81,45 @@ public class MainFrame extends JFrame{
 				form.setVisible(true);
 			}
 		});
+		JMenuItem eeClients = new JMenuItem("EE - Clients");
+		JMenuItem bioClients = new JMenuItem("Bio - Clients");
+		JMenuItem hydroClients = new JMenuItem("Hydro - Clients");
+		JMenuItem RESClients = new JMenuItem("RES - Clients");
+		JMenuItem tourisamClients = new JMenuItem("Tourisam - Clients");
+		JMenuItem itClients = new JMenuItem("IT/Telekom - Clients");
+		JMenuItem smeClients = new JMenuItem("SME- Clients");
+		JMenuItem mediaClients = new JMenuItem("Media - Clients");
+		JMenuItem solarnaClients = new JMenuItem("Solar Walley - Clients");
+		JMenuItem wasteCl = new JMenuItem("Waste - Clients");
+		JMenuItem institutionsCl = new JMenuItem("Institutions");
 		
+		Meni.addSeparator();
 
-		menuBar.add(ClientList);
+		Meni.add(ClientList);
+		Meni.addSeparator();
+		Meni.add(eeClients);
+		Meni.addSeparator();
+		Meni.add(bioClients);
+		Meni.addSeparator();
+		Meni.add(hydroClients);
+		Meni.addSeparator();
+		Meni.add(RESClients);
+		Meni.addSeparator();
+		Meni.add(tourisamClients);
+		Meni.addSeparator();
+		Meni.add(itClients);
+		Meni.addSeparator();
+		Meni.add(smeClients);
+		Meni.addSeparator();
+		Meni.add(mediaClients);
+		Meni.addSeparator();
+		Meni.add(solarnaClients);
+		Meni.addSeparator();
+		Meni.add(wasteCl);
+		Meni.addSeparator();
+		Meni.add(institutionsCl);
+		Meni.addSeparator();
+		menuBar.add(Meni);
 		menuBar.add(UpcomingEvent);
 		
 		

@@ -1,29 +1,28 @@
 package form;
 
 
-import gui.main.form.MainFrame;
-
 import java.awt.Dimension;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 
-import net.miginfocom.swing.MigLayout;
 import actions.standard.form.AddAction;
 import actions.standard.form.DeleteAction;
 import actions.standard.form.FirstAction;
 import actions.standard.form.HelpAction;
 import actions.standard.form.LastAction;
 import actions.standard.form.NextAction;
-import actions.standard.form.PickupAction;
 import actions.standard.form.PreviousAction;
 import actions.standard.form.RefreshAction;
 import actions.standard.form.SearchAction;
+import gui.main.form.MainFrame;
+import net.miginfocom.swing.MigLayout;
 
-public abstract class StandardForm extends JDialog {
+public abstract class StandardForm extends JFrame {
 	
 	protected static final int MODE_EDIT = 1;
 	protected static final int MODE_ADD = 2;
@@ -55,19 +54,7 @@ public abstract class StandardForm extends JDialog {
 		this.callerForm = callerForm;
 	}
 
-	public abstract void setKeyFromIzvod(String key);
-	public abstract void setKeyFromBanka(String key,String name, boolean next);
-	public abstract void setKeyFromValuta(String key,String name,boolean next);
-	public abstract void setKeyFromValuta1(String key,String name,boolean next);
-	public abstract void setKeyFromRacun(String key,String date,boolean next);
-	public abstract void setKeyFromDnevnoStanjeRacuna(String key);
-	public abstract void setKeyFromNaseljenoMesto(String key,String name,boolean next);
-	public abstract void setKeyFromKursnaLista(String key,boolean next);
-	public abstract void setKeyFromDrzava(String key,String name,boolean next);
-	public abstract void setKeyFromKlijent(String key,String name);
-	public abstract void setKeyFromPrenosIzvoda(String pib,String racun,String datum,String presek,String izvod,boolean next);
-	public abstract void setKeyFromVrstePlacanja(String key,String name);
-	public abstract void setKeyFromAnalitikaIzvoda(String key);
+	
 	public abstract void removeRow();
 	public abstract void addRow();
 	public abstract void updateRow();
@@ -93,7 +80,7 @@ public abstract class StandardForm extends JDialog {
 		setLayout(new MigLayout("fill"));
 		setSize(new Dimension(1024, 1000));
 		setLocationRelativeTo(MainFrame.getInstance());
-		setModal(true);
+		
 		
 		initToolbar();
 	}
@@ -107,13 +94,11 @@ public abstract class StandardForm extends JDialog {
 		toolBar = new JToolBar();
 		btnSearch = new JButton(new SearchAction(this));
 		toolBar.add(btnSearch);
+		
 
 
 		btnRefresh = new JButton(new RefreshAction(this));
 		toolBar.add(btnRefresh);
-
-		btnPickup = new JButton(new PickupAction(this));
-		toolBar.add(btnPickup);
 
 
 		btnHelp = new JButton(new HelpAction());

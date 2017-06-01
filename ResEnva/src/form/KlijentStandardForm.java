@@ -52,7 +52,7 @@ public class KlijentStandardForm extends StandardForm {
 		setTitle("Klijenti");
 		initTable();
 		initGui();
-
+		
 		
 	}
 	
@@ -175,7 +175,6 @@ private void initTable(){
 			CompName.setText("");
 			ContactName.setText("");
 			Address.setText("");
-			ContactName.setText("");
 			City.setText("");
 			CounReg.setText("");
 			ContactTitle.setText("");
@@ -187,6 +186,7 @@ private void initTable(){
 		
 		return;
 		}
+		
 		String CompName1 = (String)tableModel.getValueAt(index, 0);
 		String naziv = (String)tableModel.getValueAt(index, 1);
 		String naziv1 = (String)tableModel.getValueAt(index, 2);
@@ -197,7 +197,7 @@ private void initTable(){
 		String naziv6 = (String)tableModel.getValueAt(index, 7);
 		String naziv7 = (String)tableModel.getValueAt(index, 8);
 		String naziv8 = (String)tableModel.getValueAt(index, 9);
-		//String naziv9 = (String)tableModel.getValueAt(index, 10);
+		
 		
 		CompName.setText(CompName1);
 		ContactName.setText(naziv);
@@ -213,76 +213,7 @@ private void initTable(){
 	}
 
 
-	@Override
-	public void setKeyFromIzvod(String key) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void setKeyFromBanka(String key, String name,boolean next) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void setKeyFromValuta(String key, String name,boolean next) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void setKeyFromValuta1(String key, String name,boolean next) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void setKeyFromRacun(String key,String brojPreseka,boolean next) {
-		// TODO Auto-generated method stub
 	
-	}
-
-	@Override
-	public void setKeyFromPrenosIzvoda(String pib,String racun,String datum,String presek,String izvod,boolean next) {
-	}
-
-	@Override
-	public void setKeyFromKursnaLista(String key,boolean next) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void setKeyFromDnevnoStanjeRacuna(String key) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void setKeyFromNaseljenoMesto(String key, String name, boolean next) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void setKeyFromDrzava(String key, String name, boolean next) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 
@@ -303,7 +234,6 @@ private void initTable(){
 		if(mode==1){
 			this.mode = MODE_EDIT;
 			CompName.setEditable(false);
-			CompName.setText("");
 			CompName.setText("");
 			ContactName.setText("");
 			Address.setText("");
@@ -349,6 +279,19 @@ private void initTable(){
 			NextActivity.setText("");
 			CompName.setEditable(true);
 			CompName.requestFocus();
+		}
+		else{
+			CompName.setEditable(false);
+			ContactName.setEditable(false);
+			Address.setEditable(false);
+			ContactName.setEditable(false);
+			City.setEditable(false);
+			CounReg.setEditable(false);
+			ContactTitle.setEditable(false);
+			Phone.setEditable(false);
+			Email.setEditable(false);
+			Comments.setEditable(false);
+			NextActivity.setEditable(false);
 		}
 	}
 
@@ -407,6 +350,7 @@ private void initTable(){
 		KlijentTableModel ktm = (KlijentTableModel)tblGrid.getModel();
 		int index = ktm.insertRow(Compname,naziv,naziv1,naziv2,naziv3,naziv4,naziv5,naziv6,naziv7, naziv8);
 		tblGrid.setRowSelectionInterval(index, index);
+		
 		} catch (SQLException ex) {
 		JOptionPane.showMessageDialog(this, ex.getMessage(),
 		"Greska", JOptionPane.ERROR_MESSAGE);
@@ -462,7 +406,7 @@ private void initTable(){
 		String naziv7 = Comments.getText().trim();
 		String naziv8 = NextActivity.getText().trim();
 		if(!Compname.equals("")){
-			((KlijentTableModel) getTable().getModel()).search(" WHERE CompanyName="+Compname+";");
+			((KlijentTableModel) getTable().getModel()).search(" WHERE CompanyName='"+Compname+"';");
 
 		}
 		else if(!naziv.equals("")){
@@ -516,28 +460,5 @@ private void initTable(){
 
 
 
-	@Override
-	public void setKeyFromKlijent(String key, String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void setKeyFromAnalitikaIzvoda(String key) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-
-	@Override
-	public void setKeyFromVrstePlacanja(String key, String name) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

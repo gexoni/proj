@@ -1,6 +1,7 @@
 package actions.standard.form;
 
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -22,5 +23,11 @@ public class DeleteAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		standardForm.removeRow();
+		try {
+			standardForm.refresh();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
